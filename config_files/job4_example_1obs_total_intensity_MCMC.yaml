@@ -74,7 +74,7 @@ TWO_PSF_FILES: [0]      # indicate whether there are two different files (= loca
 # The "CROP_*" parameters indicate the number of pixels to remove both in left-right, top-bottom directions. 
 # (!) IMPORTANT: The spatial dimension of the science, noise, mask data should be the same. 
 # (!) IMPORTANT: if COMPUTE_NOISE_MAP is set to 1, CROP_NOISE should be set to 0 because the noise map is computed from the cropped SCIENCE_DATA.
-CROP_SCIENCE: [412]   # list of cropping parameter for the spatial dimensions of the science cube/image. One value per observation.
+CROP_SCIENCE: [12]    # list of cropping parameter for the spatial dimensions of the science cube/image. One value per observation.
 CROP_NOISE  : [0]     # list of cropping parameter for the spatial dimensions of the noise cube/image. One value per observation. 
 CROP_PSF    : [20]    # list of cropping parameter for the spatial dimensions of the PSF DATA
 CROP_MASK   : [0]     # list of cropping parameter for the spatial dimensions of the mask image. One value per observation.
