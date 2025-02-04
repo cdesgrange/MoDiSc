@@ -598,8 +598,6 @@ def load_PA_ARRAY_one_dataset(dico = None, ID='', WRITETO=False):
     FN_PA    = dico.get('fn_pa', 'PROBLEM')
     inputs_resultdir  = dico.get('inputs_resultdir', 'PROBLEM')
            
-    print(RUN_POSTPROCESSING_TECHNIQUE)
-    print('ADI' in RUN_POSTPROCESSING_TECHNIQUE)
     if 'ADI' in RUN_POSTPROCESSING_TECHNIQUE:
         print('yes')
         path_pa  = os.path.join(DATADIR, FN_PA)

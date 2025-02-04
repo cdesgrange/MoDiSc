@@ -484,6 +484,7 @@ if __name__ == '__main__':
             'spectral_axis_all' : SPECTRAL_AXIS_ALL,
             'channels_all'      : CHANNELS_ALL,
             'inputs_resultdir'  : RESULTDIR_INPUT_FILES,
+            'run_postprocessing_technique_all': RUN_POSTPROCESSING_TECHNIQUE_ALL,
             'display': DISPLAY_GENERAL_INFO,
             }
 
@@ -509,7 +510,7 @@ if __name__ == '__main__':
             'crop_mask_all'    : CROP_MASK_ALL,
             'compute_noise_map_all'          : COMPUTE_NOISE_MAP_ALL,
             'noise_multiplication_factor_all': NOISE_MULTIPLICATION_FACTOR_ALL,
-            'spatial_shift_noise_data'       : SPATIAL_SHIFT_SCIENCE_DATA_ALL,
+            'spatial_shift_noise_data_all'   : SPATIAL_SHIFT_SCIENCE_DATA_ALL,
             'iwa_all'          : IWA_ALL,
             'nb_modes_all'     : NB_MODES_ALL,
             'science_data_all' : SCIENCE_DATA_ALL, 
