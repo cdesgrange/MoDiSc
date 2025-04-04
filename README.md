@@ -14,6 +14,10 @@ Activate this environment
 
 > $ conda activate modisc_env
 
+Install MoDiSc via pip:
+
+> $ pip install MoDiSc
+
 The packages required by MoDiSc are indicated in MoDiSc/packages.py.
 Most of the packages can be installed via 
 
