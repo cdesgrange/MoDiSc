@@ -19,6 +19,11 @@ Contents
    :caption: Getting started
 
    Installation-and-dependencies
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials
+
    Quick-start
 
 .. toctree::
