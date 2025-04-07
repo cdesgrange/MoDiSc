@@ -17,21 +17,18 @@ Contents
 .. toctree::
    :maxdepth: 2
    :caption: Getting started
-   :hidden:
 
    Installation-and-dependencies
   
 .. toctree::
    :maxdepth: 2
    :caption: Tutorial
-   :hidden:
     
    Quick-start
 
 .. toctree::
    :maxdepth: 2
    :caption: About
-   :hidden:
 
    Citation
    Contact
