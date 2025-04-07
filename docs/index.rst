@@ -1,8 +1,8 @@
 Welcome to MoDiSc's documentation!
 ===================================
 
-**MoDiSc** is a Python library for debris disks lovers.
-MoDiSc (Modeling Disks in Scattered light) constrains the morphology and photometry of debris disks detected in scattered light. It uses MCMC or Nelder-Mead optimization to determine the best parameters to model the debris disk.
+**MoDiSc** is a Python library for debris disk enthusiasts.
+MoDiSc (Modeling Disks in Scattered light) is designed to constrain the morphology and photometry of debris disks observed in scattered light. It supports both MCMC and Nelder-Mead optimization methods to determine the best-fit parameters for modeling the  disk.
 
 Check out the :doc:`Installation and dependencies` section to install MoDiSc and the tutorials in ref:`Quick-start` to run it.
 
