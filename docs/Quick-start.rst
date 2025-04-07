@@ -1,5 +1,5 @@
-Quick-start
------------
+Quick start to run MoDiSc
+-------------------------
 
 1. Go to the directory where you would like to run the simulations. Make sure to add the scripts run_modisc.py and plot_mcmc_results.py in this directory, and the folder "config_files/" in which are the configuration files of the simulations to be launched.
 
