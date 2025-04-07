@@ -1,7 +1,7 @@
 .. _installation:
 
-Installation
-------------
+Installation and dependencies
+-----------------------------
 
 First create a new environment to use MoDiSc.
 
