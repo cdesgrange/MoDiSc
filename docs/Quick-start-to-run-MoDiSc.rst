@@ -3,7 +3,7 @@ Quick start to run MoDiSc
 
 1. **Go to the directory where you would like to run the simulations**. Make sure to add the scripts run_modisc.py and plot_mcmc_results.py in this directory, and the folder "config_files/" in which are the configuration files of the simulations to be launched.
 
- 
+  
 
 2. In the folder "config_files/", there are **six examples of simulations to be launched** just by running one commant.
 
@@ -45,11 +45,11 @@ or a MCMC exploration
 
   $ python3 run_modisc.py config_files/job5_example_2obs_polar_and_total_intensity_MCMC.yaml
 
-
 3. **Wait for the results!** They will be stored at results/*/beginning_date_of_the_simulation/final/. A logfile will be created and stored there, and a copy will also be added in the folder logs/, once the script has finished running.
 
 
-4. If you run a simulation using MCMC exploration, you can plot the **cornerplot of the posterior distributions** by running
+
+ 4. If you run a simulation using MCMC exploration, you can plot the **cornerplot of the posterior distributions** by running
 
 .. code-block:: bash
 
