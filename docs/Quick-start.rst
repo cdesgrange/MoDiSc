@@ -9,37 +9,37 @@ Quick start to run MoDiSc
 
 .. code-block:: bash
 
-  python3 run_modisc.py config_files/job1_example_1obs_polarized_intensity_Nelder-Mead.yaml
+  $ python3 run_modisc.py config_files/job1_example_1obs_polarized_intensity_Nelder-Mead.yaml
 
 or a MCMC exploration (longer; "job2_*")
 
 .. code-block:: bash
 
-  python3 run_modisc.py config_files/job2_example_1obs_polarized_intensity_Nelder-Mead.yaml
+  $ python3 run_modisc.py config_files/job2_example_1obs_polarized_intensity_Nelder-Mead.yaml
 
 - "job3_*" and "job4_*" constrain the morphology of the debris disk around HD 120326 based on SPHERE total intensity data at 1.6 $\mu$m (one observation), using a Nelder-Mead optimization
 
 .. code-block:: bash
 
-  python3 run_modisc.py config_files/job3_example_1obs_total_intensity_Nelder-Mead.yaml
+  $ python3 run_modisc.py config_files/job3_example_1obs_total_intensity_Nelder-Mead.yaml
 
 or a MCMC exploration 
 
 .. code-block:: bash
 
-  python3 run_modisc.py config_files/job3_example_1obs_total_intensity_MCMC.yaml
+  $ python3 run_modisc.py config_files/job3_example_1obs_total_intensity_MCMC.yaml
 
 - "job5_*" and "job6_*" constrain the morphology of the debris disk around HD 120326 based on SPHERE total and polarized intensity data at 1.6 $\mu$m (two observations in total), using a Nelder-Mead optimization (faster; job5) 
 
 .. code-block:: bash
 
-  python3 run_modisc.py config_files/job5_example_2obs_polar_and_total_intensity_Nelder-Mead.yaml
+  $ python3 run_modisc.py config_files/job5_example_2obs_polar_and_total_intensity_Nelder-Mead.yaml
 
 or a MCMC exploration
 
 .. code-block:: bash
 
-  python3 run_modisc.py config_files/job5_example_2obs_polar_and_total_intensity_MCMC.yaml
+  $ python3 run_modisc.py config_files/job5_example_2obs_polar_and_total_intensity_MCMC.yaml
 
 3. Wait for the results! They will be stored at results/*/beginning_date_of_the_simulation/final/. A logfile will be created and stored there, and a copy will also be added in the folder logs/, once the script has finished running.
 
@@ -47,7 +47,7 @@ or a MCMC exploration
 
 .. code-block:: bash
 
-  python3 plot_mcmc_results.py config_files/job2_example_1obs_polarized_intensity_MCMC.yaml
+  $ python3 plot_mcmc_results.py config_files/job2_example_1obs_polarized_intensity_MCMC.yaml
 
 the figures will be saved at results/{name of the directory defined in the configuration file "job*.yaml" under the variable "SAVINGDIR"}/{date and time of the launch of the simulation}/results_mcmc/*.pdf
 
