@@ -24,7 +24,7 @@ Contents
    :maxdepth: 2
    :caption: Tutorials
 
-   Quick-start
+   Quick-start-to-run-MoDiSc
 
 .. toctree::
    :maxdepth: 2
