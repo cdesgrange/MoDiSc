@@ -3,8 +3,9 @@ Quick start to run MoDiSc
 
 1. **Go to the directory where you would like to run the simulations**. Make sure to add the scripts run_modisc.py and plot_mcmc_results.py in this directory, and the folder "config_files/" in which are the configuration files of the simulations to be launched.
 
+ 
 
-2. In the folder "config_files/", there are six examples of simulations to be launched.
+2. In the folder "config_files/", there are **six examples of simulations to be launched** just by running one commant.
 
 - "job1_*" and "job2_*": constrain the morphology of the debris disk around HD 120326 based on SPHERE polarized intensity data at 1.6 $\mu$m (one observation), using a Nelder-Mead optimization (faster; "job1_*") 
 
