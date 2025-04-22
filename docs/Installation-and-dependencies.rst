@@ -37,7 +37,7 @@ Most of the packages can be installed via
 
 
 
-:red:`**Exceptions:**`
+**Exceptions:**
 
 - emcee: the appropriate version of the emcee package to be used by MoDiSc is located in MoDiSc/emcee/
 
