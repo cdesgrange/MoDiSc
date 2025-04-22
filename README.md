@@ -1,6 +1,11 @@
 # MoDiSc
 
-MoDiSc stands for Modeling Disk in Scattered light. One can use the MoDiSc code to constrain the morphology and spectroscopy of a disk in scattered-light. It was originally used to model the total and polarized intensity data from the VLT/SPHERE instrument on the debris disk HD 120326 (HIP 67497) presented in Desgrange et al. (2025) resubm.
+MoDiSc (Modeling Disk in Scattered light) is a python package to model debris disk in scattered light. It was first used to constrain the morphology and the photometry of the debris disk HD 120326 (HIP 67497) imaged in total and polarized intensity with VLT/SPHERE data  in Desgrange et al. (2025).
+
+The documentation of the code is available [here](https://modisc.readthedocs.io/en/latest/). The first few steps regarding installation, running MoDiSc on a few example cases are also written below.
+
+If you would like new features implemented in MoDiSc for your work, feel free to contact me via email (celia.desgrange@eso.org). I will look into implementing them on a best-effort basis.
+
 
 <br>
 
