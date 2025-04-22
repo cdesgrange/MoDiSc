@@ -29,15 +29,16 @@ Most of the packages can be installed via
   $ pip install packagename
 
 
-.. code-block:: bash 
-
-  pip install opencv-python
 
 .. warning::
 
   **Exceptions:** 
   
   - opencv must be installed via 
+
+  .. code-block:: bash 
+
+    pip install opencv-python
 
   - emcee: the appropriate version of the emcee package to be used by MoDiSc is located in MoDiSc/emcee/
 
