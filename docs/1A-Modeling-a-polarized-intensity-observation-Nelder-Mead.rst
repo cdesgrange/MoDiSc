@@ -90,11 +90,86 @@ The keyword ``DISPLAY_INFO_SIMU_NELDERMEAD`` should can be set to 1 to see how t
   DISPLAY_INFO_SIMU_NELDERMEAD: 1 # print the information when Nelder-Mead simulations are running
   
   
-  
-  
-  
-  
+System Parameter
+----------------
 
+Indicate the distance of the observed system. This would be used by the ``VIP_HCI`` function ``vip_hci.fm.scattered_light_disk.ScatteredLightDisk()`` in the function ``MoDiSc.simulations.generate_disk_model()``. This is to derive the location of the dust belt in the preprocessed (or postprocessed) science image in which the disk has to be modeled. The reference radius of the dust belt is given in au and the platescale of the image is given in arcseconds/au.
+  
+.. code-block:: bash
+
+  ####################
+  # SYSTEM PARAMETER #
+  ####################
+
+  DISTANCE_STAR: 113.27  # distance to the system of interest in pc
+
+
+Observation Parameters
+----------------------
+
+Here are listed all the parameters of the observations, in a list. A list of one element implies that one observation will be modeled. A list of two elements implies that two observations will be modeled, and so on. 
+
+.. code-block:: bash
+
+  ##########################
+  # OBSERVATION PARAMETERS #
+  ##########################
+  EPOCHS       : ['2018-06-01'] # list of epochs(s) corresponding to the observation(s). One value per observation.
+  INSTRU       : ['IRDIS']      # list of instrument(s) corresponding to the observation(s). One value per observation.
+  TYPE_OBS     : ['polarized_intensity'] # list of the type of the observation: total intensity ('total_intensity') or polarimetry ('polarized_intensity'). One value per observation.
+  PLATE_SCALE  : [0.012255] # list of the plate scale values in arcseconds. One value per observation.
+  SPECTRAL_AXIS: [0]        # if [..., 1, ...], there is a spectral axis for the psf and science data, if [..., 0, ...], there is not
+  CHANNELS     : [[0,1]]    # list of list of spectral channels (one channel = one wavelength) to be considered. Example: For 3 observations, CHANNELS_ALL = [[0],[0,1],[None]] indicates that for the first observation, only the first spectral will be considered, whereas for the second observation, both the first and second channels will be considered, and for the third observation, the parameter is not relevant because there is no spectral axis (SPECTRAL_AXIS should be equal to [1, 1, 0]).
+  TWO_PSF_FILES: [1]      # indicate whether there are two different files (= located at two different paths) to consider for the PSF (1 = yes, 0 = no)
+
+.. note::
+
+  If the observation to be modeled in a science cube with a spectral axis, ``SPECTRAL_AXIS`` should be set to [..., 1, ...], and in ``CHANNELS`` should be indicated the index of the spectral channels to be considered. If there are several indexes; the images at these wavelength will be mean summed.
+
+.. note::
+
+  The keyword TWO_PSF_FILES indicate whether there are two different files (= located at two different paths) to consider for the PSF (1 = yes, 0 = no). For instance, SPHERE/IRDIS polarized intensity data processed with IRDAP have two PSF, for the left and right part of the detector, stored in two different files. On the other hand; the PSF(s) of SPHERE/IRDIS total intensity data pre-processed by the High-Contrast Data Center are stored in one given file.
+
+.. code-block:: bash
+  
+  CROP_PSF    : [500]   # for the PSF DATA
+  CROP_SCIENCE: [412]   # list of cropping parameter for the spatial dimensions of the science cube/image. One value per observation.
+  CROP_NOISE  : [412]   # list of cropping parameter for the spatial dimensions of the noise cube/image. One value per observation. 
+  CROP_MASK   : [0]     # list of cropping parameter for the spatial dimensions of the mask image. One value per observation.
+  CROP_REF    : [None]  # list of cropping parameter for the spatial dimensions of the ref cube. One value per observation.
+
+  COMPUTE_NOISE_MAP: [0]   # list of booleans (or 0/1) indicating whether the noise map should be computed or is already provided. One value per observation. True = 1 means yes, compute the noise map from the science data. False = 0 means no, load it from the path DATADIR + FN_NOISE.
+  NOISE_MULTIPLICATION_FACTOR: [1]  # list of floats. One value per observation. This multiplication factor can be used to artificially increase the value of the noise cube/image. See e.g. Mazoyer et al. 2020 in their SPIE paper about diskFM. Default value: 1
+
+.. note::
+
+   # The "CROP_*" parameters indicate the number of pixels to remove both in left-right, top-bottom directions
+
+.. warning::
+
+  - The spatial dimension of the science, noise, mask data should be the same. 
+
+  - If the keyword ``COMPUTE_NOISE_MAP`` is set to 1, ``CROP_NOISE`` should be set to 0 because the noise map is computed from the cropped ``SCIENCE_DATA``.
+
+  
+.. code-block:: bash
+
+  SPATIAL_SHIFT_PSF_DATA: [0.5]      # list of floats indicating the number of pixels to offset the psf image. One value per observation.
+  SPATIAL_SHIFT_SCIENCE_DATA: [0.5]  # list of floats indicating the number of pixels to offset the science data. One value per observation. In practice, this is only use in the case of polarized intensity data and if DO_ROBUST_CONVOLUTION is set to 1, when the IM_PA image is computed. 
+  
+  NORM_FACTOR_SCIENCE: [1] # factor by which the science image/cube can be normalized. Default value: 1. One value per observation.
+
+The **center of the psf and science data** is supposed to be at (n//2, n//2), where n is the size of the image in x and y directions, starting the count at 0. If this is indeed the case, the keywords ``SPATIAL_SHIFT_PSF_DATA_ALL`` and ``SPATIAL_SHIFT_SCIENCE_DATA_ALL`` should be set to 0. Otherwise, set ``SPATIAL_SHIFT_PSF_DATA_ALL`` to the number of pixels to offset the image. 
+
+.. note:: 
+
+  - For SPHERE/IRDIS polarized intensity data processed with IRDAP, SPATIAL_SHIFT_*_DATA = 0.5.
+  - For SPHERE/IRDIS or SPHERE/IFS total intensity data preprocessed with SpeCal, SPATIAL_SHIFT_*_DATA = 0.
+
+For example, ``SPATIAL_SHIFT_*_DATA_ALL`` = 0.5 means that the center of the image is at (n//2 + 0.5, n//2 + 0.5).
+
+In practice, I do not renormalized the science image/cube, so I let ``NORM_FACTOR_SCIENCE`` = 1.
+  
 
 
 
