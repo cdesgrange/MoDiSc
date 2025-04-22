@@ -17,7 +17,7 @@ or a MCMC exploration (longer; ``job2_*``)
 
 .. code-block:: bash
 
-  $ python3 run_modisc.py config_files/job2_example_1obs_polarized_intensity_Nelder-Mead.yaml
+  $ python3 run_modisc.py config_files/job2_example_1obs_polarized_intensity_MCMC.yaml
 
 
 - ``job3_*`` and ``job4_*`` constrain the morphology of the debris disk around HD 120326 based on SPHERE total intensity data at 1.6 $\mu$m (one observation), using a Nelder-Mead optimization
