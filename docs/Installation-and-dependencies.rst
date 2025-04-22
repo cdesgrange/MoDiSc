@@ -28,6 +28,7 @@ Most of the packages can be installed via
 
   $ pip install packagename
 
+<span style="color: red;">Ce texte sera rouge</span>
 
 <span style="color: #D52600;">**Exceptions:**</span>
 
