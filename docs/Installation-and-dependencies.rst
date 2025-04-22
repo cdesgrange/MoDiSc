@@ -3,7 +3,7 @@
 Installation and dependencies
 -----------------------------
 
-First create a new environment to use MoDiSc.
+First create a new environment dedicated to run MoDiSc.
 
 .. code-block:: bash
 
