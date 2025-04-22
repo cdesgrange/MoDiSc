@@ -28,10 +28,6 @@ Most of the packages can be installed via
 
   $ pip install packagename
 
-:red:`**Exceptions:**`
-
-**:red:`Exceptions:`**
-
 
 - opencv must be installed via 
 
