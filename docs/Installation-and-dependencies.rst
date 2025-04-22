@@ -28,7 +28,13 @@ Most of the packages can be installed via
 
   $ pip install packagename
 
-**Exceptions:**
+
+<span style="color: #D52600;">**Exceptions:**</span>
+
+<span style="color: #D52600;">Exceptions:</span>
+
+**<span style="color: #D52600;">Exceptions:</span>**
+
 
 - opencv must be installed via 
 
