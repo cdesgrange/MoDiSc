@@ -36,3 +36,13 @@ epub_show_urls = 'footnote'
 
 
 master_doc = 'index'
+
+# Color
+from docutils import nodes
+from docutils.parsers.rst import roles
+
+def red_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    node = nodes.raw('', f'<span style="color: #D52600;">{text}</span>', format='html')
+    return [node], []
+
+roles.register_local_role('red', red_role)
