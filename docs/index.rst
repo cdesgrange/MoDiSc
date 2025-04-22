@@ -32,6 +32,12 @@ Contents
    :caption: Tutorials
 
    Quick-start-to-run-MoDiSc
+   1A-Modeling-a-polarized-intensity-observation-Nelder-Mead
+   1B-Modeling-a-polarized-intensity-observation-MCMC
+   2A-Modeling-a-total-intensity-observation-Nelder-Mead
+   2B-Modeling-a-total-intensity-observation-MCMC
+   3A-Modeling-two-observations-Nelder-Mead
+   3B-Modeling-two-observations-MCMC
 
 .. toctree::
    :maxdepth: 2
