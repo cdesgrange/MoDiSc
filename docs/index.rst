@@ -1,9 +1,9 @@
 Welcome to MoDiSc's documentation!
 ===================================
 
-.. image:: https://github.com/cdesgrange/MoDiSc/docs/figs/logo.jpeg
+.. image:: figs/logo.jpeg
    :align: center
-   :width: 600px
+   :width: 400px
 
 
 ``MoDiSc`` is a Python package for debris disk enthusiasts available on `GitHub <https://github.com/cdesgrange/MoDiSc>`_.
