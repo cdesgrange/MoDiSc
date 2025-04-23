@@ -133,6 +133,8 @@ Here are listed all the parameters of the observations, in a list. A list of one
 
   The keyword TWO_PSF_FILES indicate whether there are two different files (= located at two different paths) to consider for the PSF (1 = yes, 0 = no). For instance, SPHERE/IRDIS polarized intensity data processed with IRDAP have two PSF, for the left and right part of the detector, stored in two different files. On the other hand; the PSF(s) of SPHERE/IRDIS total intensity data pre-processed by the High-Contrast Data Center are stored in one given file.
 
+Consider to crop the size of the images for sake of time.
+
 .. code-block:: bash
   
   CROP_PSF    : [500]   # for the PSF DATA
@@ -140,9 +142,6 @@ Here are listed all the parameters of the observations, in a list. A list of one
   CROP_NOISE  : [412]   # list of cropping parameter for the spatial dimensions of the noise cube/image. One value per observation. 
   CROP_MASK   : [0]     # list of cropping parameter for the spatial dimensions of the mask image. One value per observation.
   CROP_REF    : [None]  # list of cropping parameter for the spatial dimensions of the ref cube. One value per observation.
-
-  COMPUTE_NOISE_MAP: [0]   # list of booleans (or 0/1) indicating whether the noise map should be computed or is already provided. One value per observation. True = 1 means yes, compute the noise map from the science data. False = 0 means no, load it from the path DATADIR + FN_NOISE.
-  NOISE_MULTIPLICATION_FACTOR: [1]  # list of floats. One value per observation. This multiplication factor can be used to artificially increase the value of the noise cube/image. See e.g. Mazoyer et al. 2020 in their SPIE paper about diskFM. Default value: 1
 
 .. note::
 
@@ -152,18 +151,28 @@ Here are listed all the parameters of the observations, in a list. A list of one
 
   - The spatial dimension of the science, noise, mask data should be the same. 
 
+The noise cube/image can be already computed, or can be computed while running the simulation. If already computed, its path is given in input by the keywords ``DATADIR_*`` + ``FN_NOISE_*``. In this case, the keyword ``COMPUTE_NOISE_MAP`` should be set to [..., 0, ...]. In the other case, ``COMPUTE_NOISE_MAP`` should be set to [..., 1, ...].
+
+.. code-block:: bash
+
+  COMPUTE_NOISE_MAP: [0]   # list of booleans (or 0/1) indicating whether the noise cube/image should be computed or is already provided. One value per observation. True = 1 means yes, compute the noise map from the science data. False = 0 means no, load it from the path DATADIR + FN_NOISE.
+
+.. warning::
+
   - If the keyword ``COMPUTE_NOISE_MAP`` is set to 1, ``CROP_NOISE`` should be set to 0 because the noise map is computed from the cropped ``SCIENCE_DATA``.
 
-  
+The user can artificially increase the value of the noise cube/image by setting the value of NOISE_MULTIPLICATION_FACTOR higher than 1.
+
+.. code-block:: bash
+  NOISE_MULTIPLICATION_FACTOR: [1]  # list of floats. One value per observation. This multiplication factor can be used to artificially increase the value of the noise cube/image. See e.g. Mazoyer et al. 2020 in their SPIE paper about diskFM. Default value: 1
+
+The **center of the psf and science data** is supposed to be at (n//2, n//2), where n is the size of the image in x and y directions, starting the count at 0. If this is indeed the case, the keywords ``SPATIAL_SHIFT_PSF_DATA_ALL`` and ``SPATIAL_SHIFT_SCIENCE_DATA_ALL`` should be set to 0. Otherwise, set ``SPATIAL_SHIFT_PSF_DATA_ALL`` to the number of pixels to offset the image. 
+
 .. code-block:: bash
 
   SPATIAL_SHIFT_PSF_DATA: [0.5]      # list of floats indicating the number of pixels to offset the psf image. One value per observation.
   SPATIAL_SHIFT_SCIENCE_DATA: [0.5]  # list of floats indicating the number of pixels to offset the science data. One value per observation. In practice, this is only use in the case of polarized intensity data and if DO_ROBUST_CONVOLUTION is set to 1, when the IM_PA image is computed. 
   
-  NORM_FACTOR_SCIENCE: [1] # factor by which the science image/cube can be normalized. Default value: 1. One value per observation.
-
-The **center of the psf and science data** is supposed to be at (n//2, n//2), where n is the size of the image in x and y directions, starting the count at 0. If this is indeed the case, the keywords ``SPATIAL_SHIFT_PSF_DATA_ALL`` and ``SPATIAL_SHIFT_SCIENCE_DATA_ALL`` should be set to 0. Otherwise, set ``SPATIAL_SHIFT_PSF_DATA_ALL`` to the number of pixels to offset the image. 
-
 .. note:: 
 
   - For SPHERE/IRDIS polarized intensity data processed with IRDAP, SPATIAL_SHIFT_*_DATA = 0.5.
@@ -171,8 +180,65 @@ The **center of the psf and science data** is supposed to be at (n//2, n//2), wh
 
 For example, ``SPATIAL_SHIFT_*_DATA_ALL`` = 0.5 means that the center of the image is at (n//2 + 0.5, n//2 + 0.5).
 
-In practice, I do not renormalized the science image/cube, so I let ``NORM_FACTOR_SCIENCE`` = 1.
+
+.. code-block:: bash
+ 
+  NORM_FACTOR_SCIENCE: [1] # factor by which the science image/cube can be normalized. Default value: 1. One value per observation.
+
+In practice, the values of the science image/cube are *not* normalized, so  ``NORM_FACTOR_SCIENCE`` is set to 1. However, one could normalize the science image/cube is necessary.
+
+
+Processing Parameters
+^^^^^^^^^^^^^^^^^^^^^
+
+  Depending on the type of dataset, the user can prefer modeling the circumstellar disk on data preprocessed or postprocessed. Typically, the disk is modeled directly on postprocessed data for polarized intensity data, possibly also for total intensity data acquired with a reference star. For data acquired in total intensity for various parallactic angles without a reference star, the disk should be modeled considered the pre-processed science cube, to mitigate the self-subtraction effect (Milli et al. 2012). The synthetic disk will be rotated and subtracted in each frame of the pre-processed science cube. The resulting science cube will then be processed by a principal component analysis (PCA) algorithm using angular differential imaging (Marois et al. 2006) and implemented in the library ``VIP_HCI`` in the function ``vip_hci.psfsub.pca_fullfr.pca()``.
+
+.. code-block:: bash
+
+  #########################
+  # PROCESSING PARAMETERS #
+  #########################
+  RUN_POSTPROCESSING_TECHNIQUE: [None,] # algorithm used to post-process the data. In the case of total-intensity observations, acquired in pupil-stabilized mode, i.e., with various parallactic angles, the value should be set to 'PCA-ADI'. Otherwise, the value should be set to None.
+  NB_MODES: [None] # number of modes/components to use when applying PCA
+  IWA     : [7]    # list of the radius of the inner working angle in pixels. One value per observation.
+
+
+  Regarding polarized intensity data, one may wish to apply the robust convolution procedure of the synthetic disk (see Heikamp & Keller 2019), to be matched with the observation.
+
+.. code-block:: bash
   
+  DO_ROBUST_CONVOLUTION: [1] # [concerns polarized intensity data] list of booleans (or 0/1) indicating whether the robust convolution should be made (see Heikamp & Keller 2019). One value per observation. True = 1 means yes, do the robust convolution. False = 0 means no, don't do it, instead it will do the classic convolution with convolve_fft() (see function chisquare() in the script functions/simulations.py)
+
+
+Modeling Parameters
+^^^^^^^^^^^^^^^^^^^
+
+Parameters defining how the data are going to be modeled: 
+
+- with an optimizing algorithm Nelder-Mead or MCMC
+
+- the convention of the unit used (e.g., whether the value of the inclination corresponds to cos(inclination) or simply inclination in degree; whether the value of the flux scaling factor is its logarithmic value or not)
+
+- Rayleigh scattering is considered when generating a synthetic disk with ``vip_hci.fm.scattered_light_disk.ScatteredLightDisk()`` in polarized intensity.
+
+
+.. code-block:: bash
+  
+  #######################
+  # MODELING PARAMETERS #
+  #######################
+  EXPLORATION_ALGO: "Nelder-Mead" # algorithm used to explore the parameter space: "MCMC" or "Nelder-Mead"
+  CONVENTION_UNIT : "MCMC"        # two different conventions of unit are used: "MCMC" or "user-friendly". If equal CONVENTION_UNIT is set to 'MCMC', the value of the inclination corresponds to cos(inclination) and the value of the flux scaling factor corresponds to log(flux scaling factor)
+
+  DISK_MODEL_POLAR: [True] # list of boolean (or 0/1) indicating whether Rayleigh scattering should be used in the function vip_hci.fm.scattered_light_disk.ScatteredLightDisk(). If True = 1, it means that in the function ScatteredLightDisk(), the argument spf_dico would be set to {...,'polar': 1,...}. If False = 0, no Rayleigh scattering would be considered in the function ScatteredLightDisk(), so the argument spf_dico would be set to {...,'polar': 0,...}. One value per observation.
+
+Different levels of results can be saved. In any case, the final results of the simulations are save in a folder located at the path given by the keyword ``SAVINGDIR``. In addition, at each iteration, some or all the results can be saved in FITS files: the values of the free parameters investigated, the convolved synthetic disk, the residuals, the residuals normalized by the noise map, and in the case ``SAVE_FULL_RESULTS`` = 1, he following additional files: the unconvolved synthetic disk, the files necessary for the robust convolution of polarized intensity data.
+
+.. code-block:: bash
+  SAVE_SOME_RESULTS: False # equal to True (or 1) if yes, otherwise equal to False (or 0).
+  SAVE_FULL_RESULTS: True  # equal to True (or 1) if yes, otherwise equal to False (or 0).
+  
+    
 
 
 
