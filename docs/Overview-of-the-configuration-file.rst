@@ -19,7 +19,7 @@ The example configuration file corresponds to ``job1_example_1obs_polarized_inte
 Paths
 ^^^^^
 
-In each configuration file, the user can either indicate the path to the dataset on their laptop, or on the external cluster. The type of path considered depend on the value of the keyword ``EXTERNAL_SERVER``. If ``EXTERNAL_SERVER`` is equal to 1 or True, the paths considered will be those finishing by **_EXT. Otherwise, the paths considered will be those finishing by **_INT.
+In each configuration file, the user can either indicate the path to the dataset on their laptop, or on the external cluster. The type of path considered depend on the value of the keyword ``EXTERNAL_SERVER``. If ``EXTERNAL_SERVER`` is equal to 1 or True, the paths considered will be those finishing by \*_EXT. Otherwise, the paths considered will be those finishing by \*_INT.
 
 
 .. code-block:: bash
