@@ -32,7 +32,7 @@ Contents
    :caption: Tutorials
 
    Quick-start-to-run-MoDiSc
-   Configuration-file-overview
+   Overview-of-the-configuration-file
    1A-Modeling-a-polarized-intensity-observation-Nelder-Mead
    1B-Modeling-a-polarized-intensity-observation-MCMC
    2A-Modeling-a-total-intensity-observation-Nelder-Mead
