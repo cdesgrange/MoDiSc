@@ -1,3 +1,6 @@
+Configuration file overview
+---------------------------
+
 Here, I present the information written in a configuration file to model a polarized intensity observation using a Nelder-Mead optimization.
 
 The example configuration file corresponds to ``job1_example_1obs_polarized_intensity_Nelder-Mead.yaml`` located in the folder ``config_files/`` on `GitHub <https://github.com/cdesgrange/MoDiSc>`_,
