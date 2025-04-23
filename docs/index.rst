@@ -6,9 +6,6 @@ Welcome to MoDiSc's documentation!
    :width: 400px
 
 
-
-
-
 ``MoDiSc`` is a Python package for debris disk enthusiasts available on `GitHub <https://github.com/cdesgrange/MoDiSc>`_.
 MoDiSc (Modeling Disks in Scattered light) is designed to constrain the morphology and photometry of debris disks observed in scattered light. 
 
@@ -16,6 +13,12 @@ In a nutshell, the tool ``MoDiSc`` takes as input a configuration file setting t
 
 
 The disk model can be composed of one or several belts, each of them generated with the module ``fm.scattered_light_disk`` from `VIP_HCI <https://github.com/vortex-exoplanet/>`_ (`Gomez Gonzalez et al. 2017 <https://ui.adsabs.harvard.edu/abs/2017AJ....154....7G/abstract>`_, `Christiaens et al. 2023a <https://ui.adsabs.harvard.edu/abs/2023JOSS....8.4774C/abstract>`_),  based on the radiative transfer code ``GRaTeR``  (`Augereau et al. 1999b <https://ui.adsabs.harvard.edu/abs/1999A&A...348..557A/abstract>`_). One or several observations in total and/or polarized intensity can be considered simultaneously, from one or several instruments.
+
+The Figure below illustrates the best synthetic disk models found using the ``MoDiSc`` code (second and third columns), by considering total and polarized intensity observations (first column).
+
+.. image:: _static/Fig_MoDiSc.jpeg
+   :align: center
+   :width: 400px
 
 **Origin**: I wrote the code ``MoDiSc`` based on the code ``DiskFM`` (`Mazoyer et al. 2020 <https://ui.adsabs.harvard.edu/abs/2020SPIE11447E..59M/abstract>`_), which I adapted. I wanted a code more versatile than ``DiskFM``, easily launchable for different types of simulations (based on one or several epochs, one or several instruments, modeling one or several belts, using different number free parameters). I did not want to modify everytime the code, but simply give in input a configuration file containing all the information need for the simulation. I also wanted to have the results of the simulations automatically saved in a new folder, with a log of the simulation. I hope the code ``MoDiSc`` could be useful for other people too. Feel free to contact me (celia.desgrange@eso.org) if you would like a new feature implemented in ``MoDiSc`` for your work.
 
