@@ -6,6 +6,9 @@ Welcome to MoDiSc's documentation!
    :width: 400px
 
 
+
+
+
 ``MoDiSc`` is a Python package for debris disk enthusiasts available on `GitHub <https://github.com/cdesgrange/MoDiSc>`_.
 MoDiSc (Modeling Disks in Scattered light) is designed to constrain the morphology and photometry of debris disks observed in scattered light. 
 
