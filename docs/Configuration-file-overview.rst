@@ -14,7 +14,7 @@ The example configuration file corresponds to ``job1_example_1obs_polarized_inte
 
 
 Paths
------
+^^^^^
 
 In each configuration file, the user can either indicate the path to the dataset on their laptop, or on the external cluster. The type of path considered depend on the value of the keyword ``EXTERNAL_SERVER``. If ``EXTERNAL_SERVER`` is equal to 1 or True, the paths considered will be those finishing by **_EXT. Otherwise, the paths considered will be those finishing by **_INT.
 
@@ -72,7 +72,7 @@ The keyword ``RESULTDIR`` is not used for simulations using Nelder-Mead optimiza
 
 
 Display Parameters
-------------------
+^^^^^^^^^^^^^^^^^^
 
 The user can decide to print more or less information regarding the simulation. It is adviced to set the keyword ``DISPLAY_GENERAL_INFO`` to 1 (or True) to print (and save in the log file) general information regarding the simulation.
 
@@ -91,7 +91,7 @@ The keyword ``DISPLAY_INFO_SIMU_NELDERMEAD`` should can be set to 1 to see how t
   
   
 System Parameter
-----------------
+^^^^^^^^^^^^^^^^
 
 Indicate the distance of the observed system. This would be used by the ``VIP_HCI`` function ``vip_hci.fm.scattered_light_disk.ScatteredLightDisk()`` in the function ``MoDiSc.simulations.generate_disk_model()``. This is to derive the location of the dust belt in the preprocessed (or postprocessed) science image in which the disk has to be modeled. The reference radius of the dust belt is given in au and the platescale of the image is given in arcseconds/au.
   
@@ -105,7 +105,7 @@ Indicate the distance of the observed system. This would be used by the ``VIP_HC
 
 
 Observation Parameters
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 Here are listed all the parameters of the observations, in a list. A list of one element implies that one observation will be modeled. A list of two elements implies that two observations will be modeled, and so on. 
 
