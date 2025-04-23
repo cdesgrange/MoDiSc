@@ -1,7 +1,7 @@
 Welcome to MoDiSc's documentation!
 ===================================
 
-.. image:: _static/logo.jpg
+.. image:: _figs/logo.pdf
    :align: center
    :width: 600px
 
