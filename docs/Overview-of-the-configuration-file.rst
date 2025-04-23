@@ -237,15 +237,157 @@ Different levels of results can be saved. In any case, the final results of the 
 .. code-block:: bash
   SAVE_SOME_RESULTS: False # equal to True (or 1) if yes, otherwise equal to False (or 0).
   SAVE_FULL_RESULTS: True  # equal to True (or 1) if yes, otherwise equal to False (or 0).
+
+
+MCMC Parameters
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+  ###################
+  # MCMC PARAMETERS #
+  ###################
+  MCMC_NEW_BACKEND: 1 # if set to True (or 1), reset the backend. If set to False (or 0), start where the previous MCMC simulations stopped. 
+  MCMC_NB_WALKERS: 30 # number of walkers
+  MCMC_FRACTION_BALL: 0.1 # the walkers start at initial values given by PARAMS_INIT[i] * (1-MCMC_FRACTION_BALL), PARAMS_INIT[i] * (1+MCMC_FRACTION_BALL)
+  MCMC_NB_ITER: 100 # number of iterations of the MCMC. 
+
+
+.. warning::
+
+  If NEW_BACKEND is set to False (or 0), be careful that the path RESULTDIR indicates well the folder with the outputs of the simulations. Remark: In this folder, there is a folder named "results_MCMC" in which there is the file "backend_file_mcmc.h5".
+
+The following keywords are only used when plotting the results of the MCMC simulations when running the script ``plot_mcmc_results.py``
+(e.g., ipython plot_mcmc_results.py config_files/job2_example_1obs_polarized_intensity_MCMC.yaml).
+
+.. code-block:: bash
+  # MCMC READING PARAMETERS - This is only used in the plotting part
+  MCMC_CHAINS_BURNIN  : 20  # the first MCMC_CHAINS_BURNIN iterations will be removed
+  MCMC_CHAINS_BINNING : 1  # bin the chains
+  MCMC_FIG_SIZE_FACTOR: 1  # custom: factor on which one can play to change the size of the ticks, labels in the the MCMC figures (= the corner plot and the chain plot) 
+  MCMC_FIG_CORNER_PLOT_SIGMA: 1 # uncertainties are considered at "MCMC_FIG_CORNER_PLOT_SIGMA" sigma
   
+  # MCMC load PSF / PA / SCIENCE / NOISE data
+  load_data: 1 # True = 1 = yes, False = 0 = no
+  
+  # MCMC show best models
+  show_best_model: 1 # True = 1 = yes, False = 0 = no
+  
+  # MCMC PLOTTING
+  MCMC_CHAINS_APPLY_SELECTION_CRITERION: 0
+  MCMC_CHAINS_LOG_PROB_CRITERION_FRACTION: 1.05 
+  MCMC_FIG_CORNER_PLOT_ADD_TEXT_ANNOT: 1
+  
+
+
+Free and fixed Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+  ##############################
+  ## INITIAL MODEL PARAMETERS ##
+  ##############################
+  NB_FREE_PARAMS_PER_OBS: [6] # list of number of free parameters per observation. One value per observation.
+  NB_FREE_PARAMS_TOT    : 6   # total number of free parameters considering all the observations
     
 
+For each disk structure to be modeled, a value is given for each free and fixed disk parameter. This value would either be a first guess or the fixed value. The list of free parameters are indicated at the end of the configuration file.
+
+.. code-block:: bash
+
+  ###########################
+  # DISK STRUCTURE NUMBER 1 #
+  ###########################
+  RAD_INIT_STRUCT1    : [47.3573332]   # disk radius r0 (au)
+  PA_INIT_STRUCT1     : [-93.6363432]  # disk position angle (deg)
+  INC_INIT_STRUCT1    : [0.19]         # disk inclination (deg or cos(inclination) value, depending of the value of CONVENTION_UNIT)
+  G1_INIT_STRUCT1     :  [0.800424109] # first anisotropic parameter in the Henyey-Greenstein (HG) function
+  SCALING_INIT_STRUCT1: [4.89]         # flux scaling parameter of the disk belt (to match the observation)
+  AOUT_INIT_STRUCT1   : [-2]           # outer slope of the disk belt
+  
+  AIN_INIT_STRUCT1    : [10]   # inner slope of the disk belt
+  ARGPERI_INIT_STRUCT1: [0]    # argument of periastron 
+  ECC_INIT_STRUCT1    : [0]    # eccentricity of the disk
+  KSI0_INIT_STRUCT1   : [1.5]  # scale height
+  G2_INIT_STRUCT1     : [None] # second anisotropic parameter in the function
+  ALPHA_INIT_STRUCT1  : [0.5]  # weight between g1 and g2  #0.31
+  BETA_INIT_STRUCT1   : [1]    # flaring. 1 = linearly flared
+  GAMMA_INIT_STRUCT1  : [2]    # vertical profile. 2 = gaussian; if gamma small: the disk is very spanned; if gamma large, the disk is very compact.
+
+
+For each disk structure to be modeled, the bound values are given for each free and fixed disk parameter. This value would at the end only matter for the free parameters.
+
+.. code-block:: bash
+
+  # Bounds of the parameters [min value, max value]
+  RAD_BOUNDS_STRUCT1    : [[25, 130]]
+  PA_BOUNDS_STRUCT1     : [[-120, -60]]
+  INC_BOUNDS_STRUCT1    : [[0, 1]]
+  G1_BOUNDS_STRUCT1     : [[0.05, 0.999]]
+  SCALING_BOUNDS_STRUCT1: [[2, 8]]
+  AOUT_BOUNDS_STRUCT1   : [[-20, -1.1]]
+  
+  AIN_BOUNDS_STRUCT1    : [[1, 20]]
+  ARGPERI_BOUNDS_STRUCT1: [[0, 180]]
+  ECC_BOUNDS_STRUCT1    : [[0, 1]]
+  KSI0_BOUNDS_STRUCT1   : [[0, 1]]
+  G2_BOUNDS_STRUCT1     : [[0.05, 0.999]]
+  ALPHA_BOUNDS_STRUCT1  : [[0, 1]]
+  BETA_BOUNDS_STRUCT1   : [[0, 5]]
+  GAMMA_BOUNDS_STRUCT1  : [[0, 5]]
+
+
+In the case there is second disk structure to be modeled, all the previous parameters (and their bounds) should be repeated, with _STRUCT1 replaced by _STRUCT2, and the values updated. The same goes for a third disk structure, fourth, and so on.
+
+.. code-block:: bash
+
+  ###########################
+  # DISK STRUCTURE NUMBER 2 #
+  ###########################
+  # if a second disk structure is modeled, copy/paste below all previous variables names **_STRUCT1, replace STRUCT1 by STRUCT2, and update the values with the ones corresponding to the initial guess and bounds of the second disk structure
+  
+  
+  ###########################
+  # DISK STRUCTURE NUMBER 3 #
+  ###########################
+  # if a third disk structure is modeled, copy/paste all previous variables names **_STRUCT1, replace STRUCT1 by STRUCT3, and update the values with the ones corresponding to the initial guess and bounds of the third disk structure
+  
+  # and so on. 
+
+.. warning::
+  Remark: be careful, don't use too many free parameters...
 
 
 
+List of free Parameters to be fitted
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. code-block:: bash
 
+  #########################################################
+  ## List of free parameters (= parameters to be fitted) ##
+  #########################################################
+  PARAMS_NAMES:
+  - disk_structure1:
+    - RAD
+    - PA
+    - INC
+    - G1
+    - SCALING
+    - AOUT
 
+The following keywords are only used when plotting the results of the MCMC simulations when running the script ``plot_mcmc_results.py``.
 
-
+.. code-block:: bash
+  
+  FIG_USE_TEX: True # set it to False if you don't have the Tex distribution on your computer that allows to use the Tex font e.g. when doing plt.rcParams.update({"text.usetex": True,})
+  
+  # In the following parameters labels, keep the exclamation mark ! to separate the name of the parameter and its unit. This will be used to nicely plot in the cornerplot the title of each diagonal subplot. The tile would be: [parameter] = 50% percentile +/- 1 (or 2/3/etc) sigma values [unit of the parameter]
+  PARAMS_LABELS:
+  - disk_structure1:
+    - RAD: $r_0$!(au)
+    - PA : $PA$!$(^\circ)$
+    - INC: $i$!$(^\circ)$
+    - G1 : $g$!$\,$
+    - SCALING: scaling$_{\,pI}$! 
+    - AOUT: $\alpha_\mathrm{\,out}$! 
 
