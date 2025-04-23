@@ -1,5 +1,5 @@
-Configuration file overview
----------------------------
+Overview of the configuration file
+----------------------------------
 
 Here, I present the information written in a configuration file to model a polarized intensity observation using a Nelder-Mead optimization.
 
