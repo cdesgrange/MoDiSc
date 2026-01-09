@@ -28,9 +28,6 @@ The Figure below shows the best synthetic inner belt model determined by running
 
 Check out the :doc:`Installation-and-dependencies` section to install MoDiSc and the tutorials in :doc:`Quick-start-to-run-MoDiSc` to run it on several examples.
 
-.. note::
-
-   This documentation is currently under active development (April 22, 2025).
 
 
 Contents
